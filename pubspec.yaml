@@ -41,6 +41,7 @@ dependencies:
   responsive_framework: ^1.5.1
   get: ^4.6.6
   flutter_bloc: ^8.1.6
+  web_socket_channel: ^3.0.1
 
 dev_dependencies:
   flutter_test:

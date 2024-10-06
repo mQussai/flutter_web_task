@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_task/blocs/chat_bloc/chat_bloc.dart';
+import 'package:flutter_task/blocs/chat_bloc/chat_event.dart';
+import 'package:flutter_task/services/web_socket_service.dart';
+import 'package:flutter_task/utils/constants.dart';
 import 'package:flutter_task/views/add_item_screen.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
@@ -13,10 +18,6 @@ class ItemsScreen extends StatelessWidget {
       backgroundColor: Colors.black,
       body: Column(
         children: [
-          const Divider(
-            height: 0.25,
-            color: Color(0xFF999999),
-          ),
           SizedBox(
             height: (ResponsiveBreakpoints.of(context).largerThan(MOBILE))
                 ? 20
@@ -67,10 +68,15 @@ class ItemsScreen extends StatelessWidget {
                       InkWell(
                         borderRadius: BorderRadius.circular(20),
                         onTap: () {
+                          final WebSocketService webSocketService =
+                              WebSocketService();
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const AddItemScreen()),
+                                builder: (context) => BlocProvider(
+                                    create: (_) => ChatBloc(webSocketService)
+                                      ..add(ConnectWebSocket(webSocketUrl)),
+                                    child: const AddItemScreen())),
                           );
                         },
                         child: Container(

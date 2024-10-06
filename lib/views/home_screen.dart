@@ -38,25 +38,38 @@ class _HomeScreenState extends State<HomeScreen> {
             ? null
             : AppDrawer(tabs),
         backgroundColor: Colors.black,
-        appBar: AppBar(
-          iconTheme: const IconThemeData(color: Colors.white),
-          toolbarHeight: 76,
-          backgroundColor: Colors.black,
-          centerTitle: false,
-          title: Container(
-            margin: EdgeInsetsDirectional.only(
-                start: (ResponsiveBreakpoints.of(context).largerThan(TABLET))
-                    ? MediaQuery.sizeOf(context).width * 80 / 1440
-                    : 0),
-            child: SvgPicture.asset(
-              'assets/icons/logo.svg',
-              fit: BoxFit.scaleDown,
-              alignment: Alignment.center,
-            ),
+        appBar: PreferredSize(
+          preferredSize: const Size(double.maxFinite, 77),
+          child: Column(
+            children: [
+              AppBar(
+                iconTheme: const IconThemeData(color: Colors.white),
+                toolbarHeight: 76,
+                backgroundColor: Colors.black,
+                centerTitle: false,
+                title: Container(
+                  margin: EdgeInsetsDirectional.only(
+                      start:
+                          (ResponsiveBreakpoints.of(context).largerThan(TABLET))
+                              ? MediaQuery.sizeOf(context).width * 80 / 1440
+                              : 0),
+                  child: SvgPicture.asset(
+                    'assets/icons/logo.svg',
+                    fit: BoxFit.scaleDown,
+                    alignment: Alignment.center,
+                  ),
+                ),
+                actions: [
+                  AppBarActions(tabs),
+                ],
+              ),
+              Container(
+                width: double.maxFinite,
+                height: 0.25,
+                color: Color(0xFF999999),
+              ),
+            ],
           ),
-          actions: [
-            AppBarActions(tabs),
-          ],
         ),
         body: IndexedStack(
           index: tab,

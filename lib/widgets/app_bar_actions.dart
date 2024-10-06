@@ -16,7 +16,7 @@ class AppBarActions extends StatelessWidget {
       child: Row(
         children: [
           if (ResponsiveBreakpoints.of(context).largerThan(TABLET)) ...tabs,
-          VerticalDivider(color: Colors.grey[850], indent: 5, endIndent: 5),
+          VerticalDivider(color: Colors.grey[850], indent: 20, endIndent: 20),
           PopupMenuButton(
               icon: SvgPicture.asset(
                 'assets/icons/settings.svg',
@@ -46,7 +46,7 @@ class AppBarActions extends StatelessWidget {
                   PopupMenuItem(child: Text('data')),
                 ];
               }),
-          VerticalDivider(color: Colors.grey[850], indent: 5, endIndent: 5),
+          VerticalDivider(color: Colors.grey[850], indent: 20, endIndent: 20),
           TextButton(
             onPressed: () {},
             child: Row(
